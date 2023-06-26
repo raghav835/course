@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+
+<div *ngIf="flag">
+  <p>Welcome, logged-in user!</p>
+  <!-- Place your logged-in user content here -->
+</div>
+
+<div *ngIf="!flag">
+  <p>Please log in to access the content.</p>
+  <!-- Place your login form or login button here -->
+</div>

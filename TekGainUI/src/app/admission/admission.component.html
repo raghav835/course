@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { AdmissionService } from '../admission.service';
+import { Course } from '../course';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-admission',
+  templateUrl: './admission.component.html',
+  styleUrls: ['./admission.component.css']
+})
+export class AdmissionComponent implements OnInit {
+
+  admissionList: Course[] = [];
+  selectedCourse: Course;
+
+  constructor(
+    private admissionService: AdmissionService,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.getAdmissionList();
+  }
+
+  getAdmissionList() {
+    const courseId = this.activatedRoute.snapshot.paramMap.get('courseId');
+    this.admissionService.getAdmissionList(courseId).subscribe(
+      (admissionList: Course[]) => {
+        this.admissionList = admissionList;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  selectCourse(course: Course) {
+    this.selectedCourse = course;
+  }
+
+  // This function will be called when the user clicks the "Refresh" button.
+  refreshAdmissionList() {
+    this.getAdmissionList();
+  }
+}

@@ -1,0 +1,26 @@
+<h2>Associate Details</h2>
+<div class="row">
+  <div class="col-md-4">
+    <h4>Name</h4>
+    <p>{{ associate.name }}</p>
+  </div>
+  <div class="col-md-4">
+    <h4>Email</h4>
+    <p>{{ associate.email }}</p>
+  </div>
+  <div class="col-md-4">
+    <h4>Phone</h4>
+    <p>{{ associate.phone }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Courses</h4>
+    <ul>
+      <li *ngFor="let course of associate.courses">
+        {{ course.name }}
+      </li>
+    </ul>
+  </div>
+</div>
+<a href="/associates" class="btn btn-primary">Back to Associates</a>
